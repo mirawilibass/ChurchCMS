@@ -5,7 +5,7 @@ import * as FiIcons from 'react-icons/fi';
 
 const { FiMenu, FiBell, FiSearch, FiUser, FiLogOut } = FiIcons;
 
-const Header = ({ onMenuClick }) => {
+export default function Header({ onMenuClick }) {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const navigate = useNavigate();
@@ -176,6 +176,3 @@ const Header = ({ onMenuClick }) => {
       </div>
     </header>
   );
-};
-
-export default Header;
