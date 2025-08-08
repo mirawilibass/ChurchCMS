@@ -82,21 +82,21 @@ const Dashboard = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {stats.map((stat, index) => (
           <Card key={index} className="relative overflow-hidden">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">{stat.title}</p>
-                <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900">{stat.value}</p>
                 <div className="flex items-center mt-2">
                   <SafeIcon icon={FiTrendingUp} className="text-green-500 mr-1" />
                   <span className="text-sm text-green-600 font-medium">{stat.change}</span>
-                  <span className="text-sm text-gray-500 ml-1">from last month</span>
+                  <span className="text-sm text-gray-500 ml-1 hidden sm:inline">from last month</span>
                 </div>
               </div>
               <div className={`p-3 rounded-full ${colorClasses[stat.color]}`}>
-                <SafeIcon icon={stat.icon} className="text-white text-xl" />
+                <SafeIcon icon={stat.icon} className="text-white text-lg sm:text-xl" />
               </div>
             </div>
           </Card>
@@ -104,7 +104,7 @@ const Dashboard = () => {
       </div>
 
       {/* Recent Activity and Quick Actions */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Recent Activity */}
         <Card>
           <div className="flex items-center justify-between mb-6">
@@ -136,7 +136,7 @@ const Dashboard = () => {
             ].map((activity, index) => (
               <div
                 key={index}
-                className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
+                className="flex items-start sm:items-center space-x-3 p-3 bg-gray-50 rounded-lg"
               >
                 <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                 <div className="flex-1">
@@ -151,7 +151,7 @@ const Dashboard = () => {
         {/* Quick Actions */}
         <Card>
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Quick Actions</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {quickActions.map((action, index) => (
               <button
                 key={index}

@@ -182,12 +182,12 @@ const Visitors = () => {
       </div>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Total Visitors</p>
-              <p className="text-3xl font-bold text-gray-900">{totalVisitors}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{totalVisitors}</p>
               <p className="text-sm text-gray-500 mt-2">Last 30 days</p>
             </div>
             <div className="p-3 rounded-full bg-emerald-100">
@@ -200,9 +200,9 @@ const Visitors = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Pending Follow-ups</p>
-              <p className="text-3xl font-bold text-gray-900">{pendingFollowUps}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{pendingFollowUps}</p>
               <div className="flex items-center mt-2">
-                <span className="text-sm text-orange-600 font-medium">Requires attention</span>
+                <span className="text-xs sm:text-sm text-orange-600 font-medium">Requires attention</span>
               </div>
             </div>
             <div className="p-3 rounded-full bg-orange-100">
@@ -215,7 +215,7 @@ const Visitors = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">In Progress</p>
-              <p className="text-3xl font-bold text-gray-900">{inProgressFollowUps}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{inProgressFollowUps}</p>
               <p className="text-sm text-gray-500 mt-2">Currently being handled</p>
             </div>
             <div className="p-3 rounded-full bg-blue-100">
@@ -228,10 +228,10 @@ const Visitors = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Completed</p>
-              <p className="text-3xl font-bold text-gray-900">{completedFollowUps}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{completedFollowUps}</p>
               <div className="flex items-center mt-2">
                 <SafeIcon icon={FiCheckCircle} className="text-green-500 mr-1" />
-                <span className="text-sm text-green-600 font-medium">Successfully followed up</span>
+                <span className="text-xs sm:text-sm text-green-600 font-medium">Successfully followed up</span>
               </div>
             </div>
             <div className="p-3 rounded-full bg-green-100">
@@ -243,8 +243,8 @@ const Visitors = () => {
 
       {/* Search and Filter */}
       <Card>
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-          <div className="flex-1 max-w-md">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0 gap-4">
+          <div className="flex-1 max-w-full sm:max-w-md">
             <div className="relative">
               <SafeIcon icon={FiSearch} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
@@ -256,11 +256,11 @@ const Visitors = () => {
               />
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent w-full sm:w-auto"
             >
               <option value="all">All Status</option>
               <option value="Pending">Pending</option>
@@ -268,7 +268,7 @@ const Visitors = () => {
               <option value="Completed">Completed</option>
               <option value="Not Required">Not Required</option>
             </select>
-            <div className="flex space-x-2">
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
               <Button variant="outline" icon={FiFilter} size="sm">More Filters</Button>
               <Button variant="outline" icon={FiDownload} size="sm">Export</Button>
             </div>
@@ -278,22 +278,22 @@ const Visitors = () => {
 
       {/* Visitors List */}
       <Card>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto -mx-6 sm:mx-0">
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Visitor</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Contact</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Visit Date</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Follow-up</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Assigned To</th>
-                <th className="text-right py-3 px-4 font-semibold text-gray-900">Actions</th>
+                <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 min-w-[180px]">Visitor</th>
+                <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 hidden md:table-cell min-w-[160px]">Contact</th>
+                <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 hidden sm:table-cell">Visit Date</th>
+                <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900">Follow-up</th>
+                <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 hidden lg:table-cell">Assigned To</th>
+                <th className="text-right py-3 px-3 sm:px-4 font-semibold text-gray-900 min-w-[80px]">Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredVisitors.map((visitor) => (
                 <tr key={visitor.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-3 sm:px-4">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-full flex items-center justify-center text-white font-semibold">
                         {visitor.name.split(' ').map(n => n[0]).join('')}
@@ -301,10 +301,28 @@ const Visitors = () => {
                       <div>
                         <p className="font-medium text-gray-900">{visitor.name}</p>
                         <p className="text-sm text-gray-500">Via: {visitor.howHeard}</p>
+                        {/* Show contact info on mobile */}
+                        <div className="md:hidden mt-1 space-y-1">
+                          <div className="flex items-center space-x-1 text-xs">
+                            <SafeIcon icon={FiMail} className="text-gray-400" />
+                            <span className="text-gray-600 truncate">{visitor.email}</span>
+                          </div>
+                          <div className="flex items-center space-x-1 text-xs">
+                            <SafeIcon icon={FiPhone} className="text-gray-400" />
+                            <span className="text-gray-600">{visitor.phone}</span>
+                          </div>
+                        </div>
+                        {/* Show visit date on mobile */}
+                        <div className="sm:hidden mt-1">
+                          <div className="flex items-center space-x-1 text-xs">
+                            <SafeIcon icon={FiCalendar} className="text-gray-400" />
+                            <span className="text-gray-600">{format(new Date(visitor.visitDate), 'MMM d, yyyy')}</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </td>
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-3 sm:px-4 hidden md:table-cell">
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2 text-sm">
                         <SafeIcon icon={FiMail} className="text-gray-400" />
@@ -316,34 +334,42 @@ const Visitors = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-3 sm:px-4 hidden sm:table-cell">
                     <div className="flex items-center space-x-2">
                       <SafeIcon icon={FiCalendar} className="text-gray-400" />
                       <span className="text-gray-600">{format(new Date(visitor.visitDate), 'MMM d, yyyy')}</span>
                     </div>
                   </td>
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-3 sm:px-4">
                     <span className={`px-2 py-1 inline-flex items-center text-xs font-medium rounded-full ${getStatusClass(visitor.followUpStatus)}`}>
                       {getStatusIcon(visitor.followUpStatus)}
                       <span className="ml-1">{visitor.followUpStatus}</span>
                     </span>
+                    {/* Show assigned person on mobile */}
+                    <div className="lg:hidden mt-1">
+                      {visitor.assignedTo ? (
+                        <span className="text-xs text-gray-600">{visitor.assignedTo}</span>
+                      ) : (
+                        <span className="text-xs text-gray-400 italic">Not assigned</span>
+                      )}
+                    </div>
                   </td>
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-3 sm:px-4 hidden lg:table-cell">
                     {visitor.assignedTo ? (
                       <span className="text-gray-900">{visitor.assignedTo}</span>
                     ) : (
                       <span className="text-gray-400 italic">Not assigned</span>
                     )}
                   </td>
-                  <td className="py-4 px-4">
-                    <div className="flex items-center justify-end space-x-2">
+                  <td className="py-4 px-3 sm:px-4">
+                    <div className="flex items-center justify-end space-x-1 sm:space-x-2">
                       <button 
-                        className="p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
+                        className="p-1.5 sm:p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
                         onClick={() => handleEditVisitor(visitor)}
                       >
                         <SafeIcon icon={FiEdit} />
                       </button>
-                      <button className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                      <button className="p-1.5 sm:p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors hidden sm:block">
                         <SafeIcon icon={FiTrash2} />
                       </button>
                     </div>
@@ -355,7 +381,7 @@ const Visitors = () => {
         </div>
         
         {/* Pagination */}
-        <div className="flex items-center justify-between mt-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between mt-6 space-y-4 sm:space-y-0">
           <p className="text-sm text-gray-500">
             Showing <span className="font-medium">{filteredVisitors.length}</span> of <span className="font-medium">{visitors.length}</span> visitors
           </p>

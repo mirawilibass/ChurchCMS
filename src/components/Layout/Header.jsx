@@ -46,7 +46,7 @@ const Header = ({ onMenuClick }) => {
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="flex items-center justify-between px-6 py-4">
         {/* Left side */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 md:space-x-4">
           <button
             onClick={onMenuClick}
             className="lg:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
@@ -54,7 +54,7 @@ const Header = ({ onMenuClick }) => {
             <SafeIcon icon={FiMenu} className="text-xl" />
           </button>
           {/* Search Bar */}
-          <div className="hidden md:flex items-center bg-gray-100 rounded-lg px-3 py-2 w-96">
+          <div className="hidden sm:flex items-center bg-gray-100 rounded-lg px-3 py-2 w-full max-w-xs md:max-w-md lg:max-w-lg">
             <SafeIcon icon={FiSearch} className="text-gray-400 mr-3" />
             <input
               type="text"
@@ -65,7 +65,7 @@ const Header = ({ onMenuClick }) => {
         </div>
 
         {/* Right side */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 md:space-x-4">
           {/* Notifications */}
           <div className="relative">
             <button 
@@ -82,7 +82,7 @@ const Header = ({ onMenuClick }) => {
 
             {/* Notifications Dropdown */}
             {showNotifications && (
-              <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+              <div className="absolute right-0 top-full mt-2 w-72 sm:w-80 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
                 <div className="px-4 py-2 border-b border-gray-100">
                   <h3 className="text-sm font-semibold text-gray-900">Notifications</h3>
                 </div>
@@ -117,7 +117,7 @@ const Header = ({ onMenuClick }) => {
           </div>
 
           {/* User Profile */}
-          <div className="flex items-center space-x-3 relative">
+          <div className="flex items-center space-x-2 md:space-x-3 relative">
             <div className="hidden md:block text-right">
               <p className="text-sm font-medium text-gray-900">Admin User</p>
               <p className="text-xs text-gray-500">Church Administrator</p>
@@ -131,7 +131,7 @@ const Header = ({ onMenuClick }) => {
 
             {/* Profile Dropdown Menu */}
             {showProfileMenu && (
-              <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+              <div className="absolute right-0 top-full mt-2 w-44 sm:w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
                 <button 
                   className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   onClick={handleProfileClick}
@@ -160,6 +160,18 @@ const Header = ({ onMenuClick }) => {
               </div>
             )}
           </div>
+        </div>
+      </div>
+      
+      {/* Mobile Search Bar */}
+      <div className="sm:hidden px-4 pb-4 border-b border-gray-200">
+        <div className="relative">
+          <SafeIcon icon={FiSearch} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-gray-50"
+          />
         </div>
       </div>
     </header>

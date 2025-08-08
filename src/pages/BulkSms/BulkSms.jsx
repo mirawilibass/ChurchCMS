@@ -163,12 +163,12 @@ const BulkSms = () => {
       </div>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Total Messages</p>
-              <p className="text-3xl font-bold text-gray-900">{totalMessages}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{totalMessages}</p>
               <p className="text-sm text-gray-500 mt-2">Last 30 days</p>
             </div>
             <div className="p-3 rounded-full bg-emerald-100">
@@ -181,9 +181,9 @@ const BulkSms = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Delivery Rate</p>
-              <p className="text-3xl font-bold text-gray-900">{deliveryRate}%</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{deliveryRate}%</p>
               <div className="flex items-center mt-2">
-                <span className="text-sm text-gray-500">{totalDelivered} of {totalRecipients} delivered</span>
+                <span className="text-xs sm:text-sm text-gray-500">{totalDelivered} of {totalRecipients} delivered</span>
               </div>
             </div>
             <div className="p-3 rounded-full bg-blue-100">
@@ -196,7 +196,7 @@ const BulkSms = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Scheduled</p>
-              <p className="text-3xl font-bold text-gray-900">{scheduledMessages}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{scheduledMessages}</p>
               <p className="text-sm text-gray-500 mt-2">Pending delivery</p>
             </div>
             <div className="p-3 rounded-full bg-purple-100">
@@ -209,10 +209,10 @@ const BulkSms = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Failed</p>
-              <p className="text-3xl font-bold text-gray-900">{failedMessages}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{failedMessages}</p>
               <div className="flex items-center mt-2">
                 <SafeIcon icon={FiAlertCircle} className="text-red-500 mr-1" />
-                <span className="text-sm text-red-600 font-medium">Requires attention</span>
+                <span className="text-xs sm:text-sm text-red-600 font-medium">Requires attention</span>
               </div>
             </div>
             <div className="p-3 rounded-full bg-red-100">
@@ -224,8 +224,8 @@ const BulkSms = () => {
 
       {/* Search and Filter */}
       <Card>
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-          <div className="flex-1 max-w-md">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0 gap-4">
+          <div className="flex-1 max-w-full sm:max-w-md">
             <div className="relative">
               <SafeIcon icon={FiSearch} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
@@ -237,11 +237,11 @@ const BulkSms = () => {
               />
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent w-full sm:w-auto"
             >
               <option value="all">All Status</option>
               <option value="sent">Sent</option>
@@ -254,7 +254,7 @@ const BulkSms = () => {
                 type="date"
                 value={filterDate}
                 onChange={(e) => setFilterDate(e.target.value)}
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent w-full sm:w-auto"
               />
             </div>
             <Button variant="outline" icon={FiFilter} size="sm">More Filters</Button>

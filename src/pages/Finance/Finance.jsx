@@ -319,16 +319,16 @@ const Finance = () => {
       </div>
 
       {/* Financial Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         <Card className={`${netBalance >= 0 ? 'bg-gradient-to-br from-emerald-500 to-emerald-700' : 'bg-gradient-to-br from-red-500 to-red-700'} text-white`}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-white text-opacity-80 mb-1">Net Balance</p>
-              <p className="text-3xl font-bold">{formatCurrency(netBalance)}</p>
+              <p className="text-2xl sm:text-3xl font-bold">{formatCurrency(netBalance)}</p>
               <div className="flex items-center mt-2">
                 <SafeIcon icon={netBalance >= 0 ? FiArrowUp : FiArrowDown} className="mr-1" />
                 <span className="text-sm font-medium">{Math.abs(netChangePercentage)}%</span>
-                <span className="text-sm ml-1">from last month</span>
+                <span className="text-sm ml-1 hidden sm:inline">from last month</span>
               </div>
             </div>
             <div className="p-3 bg-white bg-opacity-20 rounded-full">
@@ -340,11 +340,11 @@ const Finance = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Total Income</p>
-              <p className="text-3xl font-bold text-gray-900">{formatCurrency(totalDonations)}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{formatCurrency(totalDonations)}</p>
               <div className="flex items-center mt-2">
                 <SafeIcon icon={FiArrowUp} className="text-green-500 mr-1" />
                 <span className="text-sm text-green-600 font-medium">+8.5%</span>
-                <span className="text-sm text-gray-500 ml-1">from last month</span>
+                <span className="text-sm text-gray-500 ml-1 hidden sm:inline">from last month</span>
               </div>
             </div>
             <div className="p-3 rounded-full bg-green-100">
@@ -356,11 +356,11 @@ const Finance = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Total Expenses</p>
-              <p className="text-3xl font-bold text-gray-900">{formatCurrency(totalExpenses)}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{formatCurrency(totalExpenses)}</p>
               <div className="flex items-center mt-2">
                 <SafeIcon icon={FiArrowUp} className="text-red-500 mr-1" />
                 <span className="text-sm text-red-600 font-medium">+5.2%</span>
-                <span className="text-sm text-gray-500 ml-1">from last month</span>
+                <span className="text-sm text-gray-500 ml-1 hidden sm:inline">from last month</span>
               </div>
             </div>
             <div className="p-3 rounded-full bg-red-100">
@@ -372,7 +372,7 @@ const Finance = () => {
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <div className="flex overflow-x-auto">
+        <div className="flex overflow-x-auto scrollbar-hide">
           <button
             className={`py-4 px-6 text-sm font-medium whitespace-nowrap border-b-2 ${activeTab === 'overview' ? 'text-emerald-600 border-emerald-600' : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'}`}
             onClick={() => setActiveTab('overview')}

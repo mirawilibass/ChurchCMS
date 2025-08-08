@@ -115,12 +115,12 @@ const Attendance = () => {
       </div>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <Card className="bg-gradient-to-br from-emerald-500 to-emerald-700 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-emerald-100 mb-1">Total Attendance</p>
-              <p className="text-3xl font-bold">{totalAttendees}</p>
+              <p className="text-2xl sm:text-3xl font-bold">{totalAttendees}</p>
               <p className="text-sm mt-2">Last 5 services</p>
             </div>
             <div className="p-3 bg-white bg-opacity-20 rounded-full">
@@ -133,11 +133,11 @@ const Attendance = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Average Attendance</p>
-              <p className="text-3xl font-bold text-gray-900">{averageAttendance}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{averageAttendance}</p>
               <div className="flex items-center mt-2">
                 <SafeIcon icon={FiTrendingUp} className="text-green-500 mr-1" />
                 <span className="text-sm text-green-600 font-medium">+5%</span>
-                <span className="text-sm text-gray-500 ml-1">from last month</span>
+                <span className="text-sm text-gray-500 ml-1 hidden sm:inline">from last month</span>
               </div>
             </div>
             <div className="p-3 rounded-full bg-blue-100">
@@ -150,7 +150,7 @@ const Attendance = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Peak Attendance</p>
-              <p className="text-3xl font-bold text-gray-900">{maxAttendance}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{maxAttendance}</p>
               <p className="text-sm text-gray-500 mt-2">Sunday, June 4</p>
             </div>
             <div className="p-3 rounded-full bg-purple-100">
@@ -163,11 +163,11 @@ const Attendance = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Total Visitors</p>
-              <p className="text-3xl font-bold text-gray-900">{totalVisitors}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">{totalVisitors}</p>
               <div className="flex items-center mt-2">
                 <SafeIcon icon={FiTrendingUp} className="text-green-500 mr-1" />
                 <span className="text-sm text-green-600 font-medium">+12%</span>
-                <span className="text-sm text-gray-500 ml-1">from last month</span>
+                <span className="text-sm text-gray-500 ml-1 hidden sm:inline">from last month</span>
               </div>
             </div>
             <div className="p-3 rounded-full bg-orange-100">
@@ -179,8 +179,8 @@ const Attendance = () => {
 
       {/* Search and Filter */}
       <Card>
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-          <div className="flex-1 max-w-md">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0 gap-4">
+          <div className="flex-1 max-w-full sm:max-w-md">
             <div className="relative">
               <SafeIcon icon={FiSearch} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
@@ -192,11 +192,11 @@ const Attendance = () => {
               />
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
             <select
               value={filterService}
               onChange={(e) => setFilterService(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent w-full sm:w-auto"
             >
               <option value="all">All Services</option>
               <option value="Sunday Morning Service">Sunday Morning</option>
@@ -208,7 +208,7 @@ const Attendance = () => {
                 type="date"
                 value={filterDate}
                 onChange={(e) => setFilterDate(e.target.value)}
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent w-full sm:w-auto"
               />
             </div>
             <Button variant="outline" icon={FiFilter} size="sm">More Filters</Button>
@@ -218,39 +218,57 @@ const Attendance = () => {
 
       {/* Attendance Records */}
       <Card>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto -mx-6 sm:mx-0">
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Date</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Service</th>
-                <th className="text-left py-3 px-4 font-semibold text-gray-900">Time</th>
-                <th className="text-right py-3 px-4 font-semibold text-gray-900">Total</th>
-                <th className="text-right py-3 px-4 font-semibold text-gray-900">Members</th>
-                <th className="text-right py-3 px-4 font-semibold text-gray-900">Visitors</th>
-                <th className="text-center py-3 px-4 font-semibold text-gray-900">Trend</th>
+                <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 min-w-[120px]">Date</th>
+                <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 min-w-[150px]">Service</th>
+                <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 hidden sm:table-cell">Time</th>
+                <th className="text-right py-3 px-3 sm:px-4 font-semibold text-gray-900">Total</th>
+                <th className="text-right py-3 px-3 sm:px-4 font-semibold text-gray-900 hidden md:table-cell">Members</th>
+                <th className="text-right py-3 px-3 sm:px-4 font-semibold text-gray-900 hidden md:table-cell">Visitors</th>
+                <th className="text-center py-3 px-3 sm:px-4 font-semibold text-gray-900 hidden lg:table-cell">Trend</th>
               </tr>
             </thead>
             <tbody>
               {filteredRecords.map((record) => (
                 <tr key={record.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-3 sm:px-4">
                     <div className="flex items-center space-x-2">
                       <SafeIcon icon={FiCalendar} className="text-emerald-500" />
-                      <span>{format(new Date(record.date), 'MMM d, yyyy')}</span>
+                      <span className="text-sm sm:text-base">{format(new Date(record.date), 'MMM d, yyyy')}</span>
                     </div>
                   </td>
-                  <td className="py-4 px-4">{record.service}</td>
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-3 sm:px-4">
+                    <div>
+                      <span className="text-sm sm:text-base">{record.service}</span>
+                      {/* Show time on mobile */}
+                      <div className="sm:hidden flex items-center space-x-1 mt-1">
+                        <SafeIcon icon={FiClock} className="text-gray-400 text-xs" />
+                        <span className="text-xs text-gray-500">{record.time}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-4 px-3 sm:px-4 hidden sm:table-cell">
                     <div className="flex items-center space-x-2">
                       <SafeIcon icon={FiClock} className="text-gray-400" />
                       <span>{record.time}</span>
                     </div>
                   </td>
-                  <td className="py-4 px-4 text-right font-medium">{record.totalAttendees}</td>
-                  <td className="py-4 px-4 text-right">{record.presentMembers}</td>
-                  <td className="py-4 px-4 text-right">{record.visitors}</td>
-                  <td className="py-4 px-4">
+                  <td className="py-4 px-3 sm:px-4 text-right">
+                    <div>
+                      <span className="font-medium text-sm sm:text-base">{record.totalAttendees}</span>
+                      {/* Show breakdown on mobile */}
+                      <div className="md:hidden text-xs text-gray-500 mt-1">
+                        <div>M: {record.presentMembers}</div>
+                        <div>V: {record.visitors}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="py-4 px-3 sm:px-4 text-right hidden md:table-cell">{record.presentMembers}</td>
+                  <td className="py-4 px-3 sm:px-4 text-right hidden md:table-cell">{record.visitors}</td>
+                  <td className="py-4 px-3 sm:px-4 hidden lg:table-cell">
                     <div className="flex justify-center">
                       {record.trend === 'up' ? (
                         <SafeIcon icon={FiArrowUp} className="text-green-500" />
@@ -266,7 +284,7 @@ const Attendance = () => {
         </div>
         
         {/* Actions */}
-        <div className="flex justify-between items-center mt-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-6 space-y-4 sm:space-y-0">
           <p className="text-sm text-gray-500">
             Showing <span className="font-medium">{filteredRecords.length}</span> of <span className="font-medium">{attendanceRecords.length}</span> records
           </p>

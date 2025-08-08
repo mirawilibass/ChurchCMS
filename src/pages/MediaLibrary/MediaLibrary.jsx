@@ -226,15 +226,15 @@ const MediaLibrary = () => {
       </div>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
         <Card>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Total Files</p>
-              <p className="text-2xl font-bold text-gray-900">{totalFiles}</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{totalFiles}</p>
             </div>
             <div className="p-3 rounded-full bg-emerald-100">
-              <SafeIcon icon={FiFolder} className="text-emerald-500 text-xl" />
+              <SafeIcon icon={FiFolder} className="text-emerald-500 text-lg sm:text-xl" />
             </div>
           </div>
         </Card>
@@ -243,10 +243,10 @@ const MediaLibrary = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Videos</p>
-              <p className="text-2xl font-bold text-gray-900">{videoFiles}</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{videoFiles}</p>
             </div>
             <div className="p-3 rounded-full bg-blue-100">
-              <SafeIcon icon={FiVideo} className="text-blue-500 text-xl" />
+              <SafeIcon icon={FiVideo} className="text-blue-500 text-lg sm:text-xl" />
             </div>
           </div>
         </Card>
@@ -255,10 +255,10 @@ const MediaLibrary = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Audio</p>
-              <p className="text-2xl font-bold text-gray-900">{audioFiles}</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{audioFiles}</p>
             </div>
             <div className="p-3 rounded-full bg-purple-100">
-              <SafeIcon icon={FiMusic} className="text-purple-500 text-xl" />
+              <SafeIcon icon={FiMusic} className="text-purple-500 text-lg sm:text-xl" />
             </div>
           </div>
         </Card>
@@ -267,10 +267,10 @@ const MediaLibrary = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Images</p>
-              <p className="text-2xl font-bold text-gray-900">{imageFiles}</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{imageFiles}</p>
             </div>
             <div className="p-3 rounded-full bg-green-100">
-              <SafeIcon icon={FiImage} className="text-green-500 text-xl" />
+              <SafeIcon icon={FiImage} className="text-green-500 text-lg sm:text-xl" />
             </div>
           </div>
         </Card>
@@ -279,10 +279,10 @@ const MediaLibrary = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Storage</p>
-              <p className="text-2xl font-bold text-gray-900">{(totalStorage / 1024).toFixed(1)}GB</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{(totalStorage / 1024).toFixed(1)}GB</p>
             </div>
             <div className="p-3 rounded-full bg-orange-100">
-              <SafeIcon icon={FiUpload} className="text-orange-500 text-xl" />
+              <SafeIcon icon={FiUpload} className="text-orange-500 text-lg sm:text-xl" />
             </div>
           </div>
         </Card>
@@ -290,8 +290,8 @@ const MediaLibrary = () => {
 
       {/* Search and Filter */}
       <Card>
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-          <div className="flex-1 max-w-md">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0 gap-4">
+          <div className="flex-1 max-w-full sm:max-w-md">
             <div className="relative">
               <SafeIcon icon={FiSearch} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
@@ -303,11 +303,11 @@ const MediaLibrary = () => {
               />
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
             <select
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent w-full sm:w-auto"
             >
               <option value="all">All Types</option>
               <option value="video">Videos</option>
@@ -315,15 +315,15 @@ const MediaLibrary = () => {
               <option value="image">Images</option>
               <option value="document">Documents</option>
             </select>
-            <div className="flex border border-gray-300 rounded-lg">
+            <div className="flex border border-gray-300 rounded-lg w-full sm:w-auto">
               <button
-                className={`p-2 ${viewMode === 'grid' ? 'bg-emerald-500 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
+                className={`p-2 flex-1 sm:flex-none ${viewMode === 'grid' ? 'bg-emerald-500 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
                 onClick={() => setViewMode('grid')}
               >
                 <SafeIcon icon={FiGrid} />
               </button>
               <button
-                className={`p-2 ${viewMode === 'list' ? 'bg-emerald-500 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
+                className={`p-2 flex-1 sm:flex-none ${viewMode === 'list' ? 'bg-emerald-500 text-white' : 'text-gray-500 hover:bg-gray-50'}`}
                 onClick={() => setViewMode('list')}
               >
                 <SafeIcon icon={FiList} />
@@ -337,7 +337,7 @@ const MediaLibrary = () => {
       {/* Media Grid/List */}
       <Card>
         {viewMode === 'grid' ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             {filteredMedia.map((media) => (
               <div key={media.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
                 {/* Media Thumbnail */}
@@ -377,30 +377,30 @@ const MediaLibrary = () => {
                   </div>
                   
                   {/* Actions */}
-                  <div className="flex items-center justify-between mt-4">
-                    <div className="flex space-x-2">
+                  <div className="flex items-center justify-center mt-4">
+                    <div className="flex space-x-1 sm:space-x-2">
                       <button 
-                        className="p-1 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded transition-colors"
+                        className="p-1.5 sm:p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
                         onClick={() => handleViewMedia(media)}
                         title="View"
                       >
                         <SafeIcon icon={FiEye} />
                       </button>
                       <button 
-                        className="p-1 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                        className="p-1.5 sm:p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                         onClick={() => handleEditMedia(media)}
                         title="Edit"
                       >
                         <SafeIcon icon={FiEdit} />
                       </button>
                       <button 
-                        className="p-1 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
+                        className="p-1.5 sm:p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
                         title="Download"
                       >
                         <SafeIcon icon={FiDownload} />
                       </button>
                       <button 
-                        className="p-1 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                        className="p-1.5 sm:p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                         title="Delete"
                       >
                         <SafeIcon icon={FiTrash2} />
@@ -412,22 +412,22 @@ const MediaLibrary = () => {
             ))}
           </div>
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto -mx-6 sm:mx-0">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200">
-                  <th className="text-left py-3 px-4 font-semibold text-gray-900">Name</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-900">Type</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-900">Category</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-900">Size</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-900">Upload Date</th>
-                  <th className="text-right py-3 px-4 font-semibold text-gray-900">Actions</th>
+                  <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 min-w-[200px]">Name</th>
+                  <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900">Type</th>
+                  <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 hidden md:table-cell">Category</th>
+                  <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 hidden sm:table-cell">Size</th>
+                  <th className="text-left py-3 px-3 sm:px-4 font-semibold text-gray-900 hidden lg:table-cell">Upload Date</th>
+                  <th className="text-right py-3 px-3 sm:px-4 font-semibold text-gray-900 min-w-[120px]">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredMedia.map((media) => (
                   <tr key={media.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td className="py-4 px-4">
+                    <td className="py-4 px-3 sm:px-4">
                       <div className="flex items-center space-x-3">
                         <SafeIcon 
                           icon={getTypeIcon(media.type)} 
@@ -438,10 +438,20 @@ const MediaLibrary = () => {
                           {media.duration && (
                             <p className="text-sm text-gray-500">Duration: {media.duration}</p>
                           )}
+                          {/* Show additional info on mobile */}
+                          <div className="md:hidden mt-1 space-y-1">
+                            <p className="text-xs text-gray-500">Category: {media.category}</p>
+                            <div className="sm:hidden">
+                              <p className="text-xs text-gray-500">Size: {media.size}</p>
+                            </div>
+                            <div className="lg:hidden">
+                              <p className="text-xs text-gray-500">Uploaded: {format(new Date(media.uploadDate), 'MMM d, yyyy')}</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </td>
-                    <td className="py-4 px-4">
+                    <td className="py-4 px-3 sm:px-4">
                       <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                         media.type === 'video' ? 'bg-blue-100 text-blue-800' :
                         media.type === 'audio' ? 'bg-purple-100 text-purple-800' :
@@ -451,33 +461,33 @@ const MediaLibrary = () => {
                         {media.type}
                       </span>
                     </td>
-                    <td className="py-4 px-4 text-gray-900">{media.category}</td>
-                    <td className="py-4 px-4 text-gray-900">{media.size}</td>
-                    <td className="py-4 px-4 text-gray-900">{format(new Date(media.uploadDate), 'MMM d, yyyy')}</td>
-                    <td className="py-4 px-4">
-                      <div className="flex items-center justify-end space-x-2">
+                    <td className="py-4 px-3 sm:px-4 text-gray-900 hidden md:table-cell">{media.category}</td>
+                    <td className="py-4 px-3 sm:px-4 text-gray-900 hidden sm:table-cell">{media.size}</td>
+                    <td className="py-4 px-3 sm:px-4 text-gray-900 hidden lg:table-cell">{format(new Date(media.uploadDate), 'MMM d, yyyy')}</td>
+                    <td className="py-4 px-3 sm:px-4">
+                      <div className="flex items-center justify-end space-x-1 sm:space-x-2">
                         <button 
-                          className="p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
+                          className="p-1.5 sm:p-2 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
                           onClick={() => handleViewMedia(media)}
                           title="View"
                         >
                           <SafeIcon icon={FiEye} />
                         </button>
                         <button 
-                          className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          className="p-1.5 sm:p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                           onClick={() => handleEditMedia(media)}
                           title="Edit"
                         >
                           <SafeIcon icon={FiEdit} />
                         </button>
                         <button 
-                          className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                          className="p-1.5 sm:p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors hidden sm:block"
                           title="Download"
                         >
                           <SafeIcon icon={FiDownload} />
                         </button>
                         <button 
-                          className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-1.5 sm:p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors hidden sm:block"
                           title="Delete"
                         >
                           <SafeIcon icon={FiTrash2} />
@@ -492,7 +502,7 @@ const MediaLibrary = () => {
         )}
         
         {/* Pagination */}
-        <div className="flex items-center justify-between mt-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between mt-6 space-y-4 sm:space-y-0">
           <p className="text-sm text-gray-500">
             Showing <span className="font-medium">{filteredMedia.length}</span> of <span className="font-medium">{mediaFiles.length}</span> files
           </p>
