@@ -119,8 +119,8 @@ export default function Header({ onMenuClick }) {
           {/* User Profile */}
           <div className="flex items-center space-x-2 md:space-x-3 relative">
             <div className="hidden md:block text-right">
-              <p className="text-sm font-medium text-gray-900">Admin User</p>
-              <p className="text-xs text-gray-500">Church Administrator</p>
+              <p className="text-sm font-medium text-gray-900">{JSON.parse(localStorage.getItem('churchUser') || '{}').name || 'User'}</p>
+              <p className="text-xs text-gray-500">{JSON.parse(localStorage.getItem('churchUser') || '{}').role || 'User'}</p>
             </div>
             <button 
               className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-full text-white hover:from-emerald-600 hover:to-emerald-800 transition-all"

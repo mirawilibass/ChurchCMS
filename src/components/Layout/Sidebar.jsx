@@ -38,14 +38,25 @@ const Sidebar = ({ isOpen, onClose }) => {
     }));
   };
 
+  // Get user role to determine menu visibility
+  const user = JSON.parse(localStorage.getItem('churchUser') || '{}');
+  const userRole = user.role || 'Administrator';
+
+  // Define role-based menu access
+  const hasAccess = (requiredRoles) => {
+    if (!requiredRoles || requiredRoles.length === 0) return true;
+    return requiredRoles.includes(userRole);
+  };
+
   const menuItems = [
     { path: '/dashboard', icon: FiHome, label: 'Dashboard' },
-    { path: '/members', icon: FiUsers, label: 'Members' },
-    { path: '/visitors', icon: FiUserPlus, label: 'Visitors' },
+    { path: '/members', icon: FiUsers, label: 'Members', roles: ['Administrator', 'Pastor', 'Info Unit'] },
+    { path: '/visitors', icon: FiUserPlus, label: 'Visitors', roles: ['Administrator', 'Pastor', 'Info Unit'] },
     { 
       path: '/attendance', 
       icon: FiCalendar, 
       label: 'Attendance',
+      roles: ['Administrator', 'Pastor'],
       submenu: [
         { path: '/attendance', label: 'Overview' },
         { path: '/attendance/digital-checkin', label: 'Digital Check-in' }
@@ -55,6 +66,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       path: '/finance', 
       icon: FiDollarSign, 
       label: 'Finance',
+      roles: ['Administrator', 'Accountant', 'Pastor'],
       submenu: [
         { path: '/finance', label: 'Overview' },
         { path: '/finance/offering', label: 'Offering' },
@@ -66,20 +78,21 @@ const Sidebar = ({ isOpen, onClose }) => {
       path: '/communication', 
       icon: FiMessageSquare, 
       label: 'Communication',
+      roles: ['Administrator', 'Info Unit', 'Pastor'],
       submenu: [
         { path: '/bulk-sms', label: 'Bulk SMS' },
         { path: '/mail', label: 'Mail System' }
       ]
     },
-    { path: '/branch', icon: FiGitBranch, label: 'Branch & Remittance' },
-    { path: '/workflow', icon: FiZap, label: 'Workflow' },
-    { path: '/certificates', icon: FiAward, label: 'Certificates' },
-    { path: '/sermons', icon: FiVideo, label: 'Sermons' },
-    { path: '/media-library', icon: FiImage, label: 'Media Library' },
-    { path: '/prayer-requests', icon: FiHeart, label: 'Prayer Requests' },
-    { path: '/equipment', icon: FiMonitor, label: 'Equipment' },
-    { path: '/reports', icon: FiFileText, label: 'Reports' },
-    { path: '/settings', icon: FiSettings, label: 'Settings' },
+    { path: '/branch', icon: FiGitBranch, label: 'Branch & Remittance', roles: ['Administrator', 'Accountant'] },
+    { path: '/workflow', icon: FiZap, label: 'Workflow', roles: ['Administrator', 'Pastor'] },
+    { path: '/certificates', icon: FiAward, label: 'Certificates', roles: ['Administrator', 'Pastor'] },
+    { path: '/sermons', icon: FiVideo, label: 'Sermons', roles: ['Administrator', 'Pastor', 'Media Department'] },
+    { path: '/media-library', icon: FiImage, label: 'Media Library', roles: ['Administrator', 'Media Department', 'Info Unit'] },
+    { path: '/prayer-requests', icon: FiHeart, label: 'Prayer Requests', roles: ['Administrator', 'Pastor'] },
+    { path: '/equipment', icon: FiMonitor, label: 'Equipment', roles: ['Administrator'] },
+    { path: '/reports', icon: FiFileText, label: 'Reports', roles: ['Administrator', 'Accountant', 'Pastor'] },
+    { path: '/settings', icon: FiSettings, label: 'Settings', roles: ['Administrator'] },
   ];
 
   return (
@@ -115,7 +128,7 @@ const Sidebar = ({ isOpen, onClose }) => {
 
         {/* Navigation Menu */}
         <nav className="mt-6 px-3 flex-1 overflow-y-auto">
-          {menuItems.map((item) => {
+          {menuItems.filter(item => hasAccess(item.roles)).map((item) => {
             const isActive = location.pathname === item.path || 
                            (item.submenu && item.submenu.some(sub => location.pathname === sub.path));
             const isExpanded = expandedMenus[item.path];

@@ -42,9 +42,17 @@ const Login = () => {
         // Set user in localStorage or context
         localStorage.setItem('churchUser', JSON.stringify({
           id: 1,
-          name: email.includes('pastor') ? 'Pastor John' : 'Admin User',
+          name: email.includes('pastor') ? 'Pastor John' : 
+                email.includes('accountant') ? 'Finance Manager' :
+                email.includes('info') ? 'Info Unit Manager' :
+                email.includes('media') ? 'Media Manager' :
+                email.includes('member') ? 'John Smith' : 'Admin User',
           email: email,
-          role: 'Administrator'
+          role: email.includes('pastor') ? 'Pastor' :
+                email.includes('accountant') ? 'Accountant' :
+                email.includes('info') ? 'Info Unit' :
+                email.includes('media') ? 'Media Department' :
+                email.includes('member') ? 'Member' : 'Administrator'
         }));
         
         // Force a page reload to ensure the app recognizes the authentication
@@ -150,7 +158,14 @@ const Login = () => {
 
         <div className="mt-8 text-center text-sm text-gray-600">
           <p>Demo Credentials:</p>
-          <p>Email: admin@church.com or demo@church.com</p>
+          <div className="space-y-1 text-xs">
+            <p>Admin: admin@church.com</p>
+            <p>Pastor: pastor@church.com</p>
+            <p>Accountant: accountant@church.com</p>
+            <p>Info Unit: info@church.com</p>
+            <p>Media: media@church.com</p>
+            <p>Member: member@church.com</p>
+          </div>
           <p>Password: password</p>
         </div>
       </div>
