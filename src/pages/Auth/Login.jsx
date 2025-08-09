@@ -29,9 +29,11 @@ const Login = () => {
       // More flexible authentication - accept multiple valid credentials
       const validCredentials = [
         { email: 'admin@church.com', password: 'password' },
-        { email: 'admin@gracechurch.org', password: 'password' },
         { email: 'pastor@church.com', password: 'password' },
-        { email: 'demo@church.com', password: 'demo' }
+        { email: 'accountant@church.com', password: 'password' },
+        { email: 'info@church.com', password: 'password' },
+        { email: 'media@church.com', password: 'password' },
+        { email: 'member@church.com', password: 'password' }
       ];
       
       const isValidUser = validCredentials.some(
@@ -43,10 +45,10 @@ const Login = () => {
         localStorage.setItem('churchUser', JSON.stringify({
           id: 1,
           name: email.includes('pastor') ? 'Pastor John' : 
-                email.includes('accountant') ? 'Finance Manager' :
-                email.includes('info') ? 'Info Unit Manager' :
+                email.includes('accountant') ? 'Sarah Johnson' :
+                email.includes('info') ? 'Mike Wilson' :
                 email.includes('media') ? 'Media Manager' :
-                email.includes('member') ? 'John Smith' : 'Admin User',
+                email.includes('member') ? 'Emily Davis' : 'Admin User',
           email: email,
           role: email.includes('pastor') ? 'Pastor' :
                 email.includes('accountant') ? 'Accountant' :
@@ -161,7 +163,7 @@ const Login = () => {
           <div className="space-y-1 text-xs">
             <p>Admin: admin@church.com</p>
             <p>Pastor: pastor@church.com</p>
-            <p>Accountant: accountant@church.com</p>
+            <p>Finance: accountant@church.com</p>
             <p>Info Unit: info@church.com</p>
             <p>Media: media@church.com</p>
             <p>Member: member@church.com</p>
